@@ -1,0 +1,9 @@
+experiment_name: air-custom-image-river
+compute:
+  num_accelerators: 1
+  accelerator_type: GPU_1xA10
+environment:
+  unity_catalog_image: __UC_IMAGE__
+command: python /app/train.py
+timeout_minutes: 10
+max_retries: 0
