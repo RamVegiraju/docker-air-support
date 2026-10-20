@@ -48,6 +48,16 @@ databricks api get --profile ml-demos \
 
 The versions response includes the digest, tags, and image acceleration status. These workspace links and commands require workspace access and the corresponding UC privileges.
 
+### Show it live in a demo
+
+Run this read-only script from your terminal with an authenticated CLI profile and `jq` installed:
+
+```bash
+./demo.sh ml-demos custom_ml.default.air_river_demo 20652474725107
+```
+
+It queries Databricks live and prints the image's tags, full digest, acceleration status, creation time, and the run's status and URL. Omit the run ID to show only the image. It does not require Docker or submit a new workload. Open the printed run URL to show the training logs and 97% accuracy result.
+
 ## Troubleshooting
 
 - **Registry internal server error after layers upload:** The default Docker attestation index failed in this deployment; pushing its single-platform manifest succeeded. `run.sh` uses `--provenance=false` to produce that format. To recover an already-built image after the CLI helper configures registry authentication:
@@ -66,6 +76,7 @@ The versions response includes the digest, tags, and image acceleration status. 
 
 - `Dockerfile` adds River to the AIR base image and copies `train.py` into the image.
 - `train.py` trains and evaluates the small classifier.
+- `demo.sh` displays live UC image metadata and an optional AIR run for presentations.
 - `workload.yaml.template` defines the AIR compute and command; `run.sh` fills in the image name and submits it with the [updated `databricks air` CLI](https://docs.databricks.com/aws/en/machine-learning/ai-runtime/cli/).
 
 ## Resources
