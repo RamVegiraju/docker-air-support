@@ -29,7 +29,8 @@ local_image="air-river-demo:$tag"
 uc_image="$catalog.$schema.$image_name:$tag"
 sed "s|__UC_IMAGE__|$uc_image|g" workload.yaml.template > workload.generated.yaml
 
-docker build --platform linux/amd64 \
+# Avoid the registry error observed when pushing Docker's attestation index.
+docker build --platform linux/amd64 --provenance=false \
   --build-arg "UV_INDEX_URL=${UV_INDEX_URL:-https://pypi.org/simple}" \
   -t "$local_image" .
 docker run --rm --platform linux/amd64 "$local_image" python /app/train.py
