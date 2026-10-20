@@ -79,6 +79,10 @@ It queries Databricks live and prints the image's tags, full digest, acceleratio
 - `demo.sh` displays live UC image metadata and an optional AIR run for presentations.
 - `workload.yaml.template` defines the AIR compute and command; `run.sh` fills in the image name and submits it with the [updated `databricks air` CLI](https://docs.databricks.com/aws/en/machine-learning/ai-runtime/cli/).
 
+## Before contributing
+
+Check `git var GIT_AUTHOR_IDENT` and `git var GIT_COMMITTER_IDENT` before committing. Use your GitHub name and a GitHub-associated email (including your GitHub noreply address) so commits are attributed to your profile.
+
 ## Resources
 
 - [Databricks CLI installation and updates](https://docs.databricks.com/aws/en/dev-tools/cli/install).
