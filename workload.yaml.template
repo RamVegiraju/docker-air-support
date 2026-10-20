@@ -1,9 +1,13 @@
+# run.sh replaces __UC_IMAGE__ and writes workload.generated.yaml before submission.
 experiment_name: air-custom-image-river
 compute:
+  # One GPU is allocated by AIR; this River packaging example trains on CPU.
   num_accelerators: 1
   accelerator_type: GPU_1xA10
 environment:
+  # Use catalog.schema.artifact:tag; dependencies are already installed in the image.
   unity_catalog_image: __UC_IMAGE__
 command: python /app/train.py
+# Bound the demo's runtime and avoid automatic repeat executions on failure.
 timeout_minutes: 10
 max_retries: 0
